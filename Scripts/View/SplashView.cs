@@ -8,7 +8,8 @@ public partial class SplashView : Control
     #endregion
     #region Behavior
     public override void _Ready()
-    {        
+    {
+        splashController.Init();
     }
     public override void _Process(double delta)
     {

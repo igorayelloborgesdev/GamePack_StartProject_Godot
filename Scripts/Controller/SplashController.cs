@@ -7,6 +7,10 @@ public class SplashController
     private SplashModel splashModel = new SplashModel();
     SplashFacade splashFacade = new SplashFacade();
     #endregion
+    public void Init()
+    {
+        splashFacade.Init();
+    }
     public bool TimerCheck(float delta)
     {
         splashModel.time = Timer(delta, splashModel.time);

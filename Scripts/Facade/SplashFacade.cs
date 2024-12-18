@@ -4,7 +4,7 @@ using System;
 
 public class SplashFacade
 {
-    public SplashFacade()
+    public void Init()
     {
         InitConfigDefaultInputs();
         LoadConfig();        

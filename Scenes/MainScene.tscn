@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://rfp7ra5qunh0"]
+[gd_scene load_steps=11 format=3 uid="uid://rfp7ra5qunh0"]
 
 [ext_resource type="Texture2D" uid="uid://dgw4aa51oyeky" path="res://Art/2d/NeutralPixel.png" id="1_4s0sp"]
+[ext_resource type="Script" path="res://Scripts/View/MainView.cs" id="1_5ck1u"]
 [ext_resource type="FontFile" uid="uid://sc21dkflbfwu" path="res://Art/Fonts/Akt-Regular.ttf" id="2_igc77"]
 [ext_resource type="Texture2D" uid="uid://b7avtc7bdoind" path="res://Art/2d/MenuIco.png" id="3_mr6p2"]
 [ext_resource type="Texture2D" uid="uid://cnetft44wffyv" path="res://Art/2d/TutorialIco.png" id="4_ivhl6"]
@@ -9,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://cdav1c4n2lus7" path="res://Art/2d/CreditsIco.png" id="7_666oy"]
 [ext_resource type="Texture2D" uid="uid://80ojf0isu0jl" path="res://Art/2d/QuitIco.png" id="8_2h5h1"]
 
+[sub_resource type="Theme" id="Theme_o5acb"]
+default_font = ExtResource("2_igc77")
+default_font_size = 60
+
 [node name="MainScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -16,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5ck1u")
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
@@ -333,3 +339,176 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_2h5h1")
 expand_mode = 1
+
+[node name="MainMenuScreenControl" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.099
+anchor_top = 0.2
+anchor_right = 0.901
+anchor_bottom = 0.8
+offset_left = -0.0800171
+offset_right = 0.0799561
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuScreenControl0" type="Control" parent="MainMenuScreenControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenuScreenControl/MainMenuScreenControl0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.305
+anchor_top = 0.279
+anchor_right = 0.695
+anchor_bottom = 0.721
+offset_left = 0.299988
+offset_top = 0.207993
+offset_right = -0.300049
+offset_bottom = -0.208008
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o5acb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Screen 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuScreenControl1" type="Control" parent="MainMenuScreenControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenuScreenControl/MainMenuScreenControl1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.305
+anchor_top = 0.279
+anchor_right = 0.695
+anchor_bottom = 0.721
+offset_left = 0.299988
+offset_top = 0.207993
+offset_right = -0.300049
+offset_bottom = -0.208008
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o5acb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Screen 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuScreenControl2" type="Control" parent="MainMenuScreenControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenuScreenControl/MainMenuScreenControl2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.305
+anchor_top = 0.279
+anchor_right = 0.695
+anchor_bottom = 0.721
+offset_left = 0.299988
+offset_top = 0.207993
+offset_right = -0.300049
+offset_bottom = -0.208008
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o5acb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Screen 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuScreenControl3" type="Control" parent="MainMenuScreenControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenuScreenControl/MainMenuScreenControl3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.305
+anchor_top = 0.279
+anchor_right = 0.695
+anchor_bottom = 0.721
+offset_left = 0.299988
+offset_top = 0.207993
+offset_right = -0.300049
+offset_bottom = -0.208008
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o5acb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Screen 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuScreenControl4" type="Control" parent="MainMenuScreenControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenuScreenControl/MainMenuScreenControl4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.305
+anchor_top = 0.279
+anchor_right = 0.695
+anchor_bottom = 0.721
+offset_left = 0.299988
+offset_top = 0.207993
+offset_right = -0.300049
+offset_bottom = -0.208008
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o5acb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Screen 5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuScreenControl5" type="Control" parent="MainMenuScreenControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenuScreenControl/MainMenuScreenControl5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.305
+anchor_top = 0.279
+anchor_right = 0.695
+anchor_bottom = 0.721
+offset_left = 0.299988
+offset_top = 0.207993
+offset_right = -0.300049
+offset_bottom = -0.208008
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o5acb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Screen 6"
+horizontal_alignment = 1
+vertical_alignment = 1
