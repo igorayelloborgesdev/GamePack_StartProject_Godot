@@ -13,20 +13,50 @@ public class MainClient
         };        
         FindObjects<T>(nodes, objectsList);
     }
-    private void FindObjects<T>(List<Node> nodes, List<T> buttons) where T : Node
+    private void FindObjects<T>(List<Node> nodes, List<T> objects) where T : Node
     {
         if (nodes.Count > 0)
         {
             foreach (var node in nodes)
             {                
-                var btn = node as T;
-                if (btn is not null)
-                {
-                    buttons.Add(btn); 
+                var obj = node as T;
+                if (obj is not null)
+                {                    
+                    if(node.GetType() == typeof(T))
+                        objects.Add(obj); 
                 }                    
-                FindObjects<T>(node.GetChildren().ToList(), buttons);
+                FindObjects<T>(node.GetChildren().ToList(), objects);
             }
         }
+        return;
+    }
+    public void CreateObjects<T>(Control control, string nodeName, out T objects) where T : Node
+    {
+        var nodes = new List<Node>
+        {
+            control.GetNode<Node>(nodeName)
+        };
+        FindObjects<T>(nodes, out objects);
+    }
+    private void FindObjects<T>(List<Node> nodes, out T objects) where T : Node
+    {
+        if (nodes.Count > 0)
+        {
+            foreach (var node in nodes)
+            {
+                var obj = node as T;
+                if (obj is not null)
+                {
+                    if (node.GetType() == typeof(T))
+                    {
+                        objects = obj;
+                        return;
+                    }                    
+                }
+                FindObjects<T>(node.GetChildren().ToList(), out objects);
+            }
+        }
+        objects = null;
         return;
     }
 }

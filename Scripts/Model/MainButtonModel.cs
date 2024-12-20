@@ -11,9 +11,13 @@ namespace GamePackStartProjectGodot.Scripts.Model
     {
         #region Node Name
         public string upperMenuControlNodeName { get; set; } = "UpperMenuControl";
+        public string mainMenuControlsNodeName { get; set; } = "MainMenuScreenControl";
+        public string upperMenuControl_TitleNinePatchRect_TitleLabelNodeName { get; set; } = "UpperMenuControl/TitleNinePatchRect/TitleLabel";
         #endregion
         #region UI
         public List<Button> mainMenuButtonsList { get; set; } = new List<Button>();
+        public List<Control> mainMenuControlsList { get; set; } = new List<Control>();
+        public Label titleLabel;
         #endregion
     }
 }
