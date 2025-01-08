@@ -11,6 +11,10 @@ public partial class MainView : Control
     public override void _Ready()
     {
         mainController.Init(this);        
-    }    
-    #endregion  
+    }
+    public override void _Process(double delta)
+    {
+        mainController.Update(delta);
+    }
+    #endregion
 }

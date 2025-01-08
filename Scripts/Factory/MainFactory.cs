@@ -1,3 +1,5 @@
+using GamePackStartProjectGodot.Scripts.Mediator;
+using GamePackStartProjectGodot.Scripts.Model;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -59,4 +61,14 @@ public class MainClient
         objects = null;
         return;
     }
+    public void CreateObjects<T>(Control control, string nodeNameRoot, string[] nodeArrayName, List<T> objectsList, bool isType) where T : Node
+    {
+        var nodes = new List<Node>();
+        foreach (var item in nodeArrayName)
+        {
+            var nodeName = nodeNameRoot + "/" + item + (isType ? "/" + typeof(T).Name : "");
+            nodes.Add(control.GetNode<Node>(nodeName));
+        }
+        FindObjects<T>(nodes, objectsList);        
+    }    
 }

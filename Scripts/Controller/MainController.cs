@@ -1,4 +1,5 @@
-﻿using GamePackStartProjectGodot.Scripts.Facade;
+﻿using GamePackStartProjectGodot.Scripts.DTO;
+using GamePackStartProjectGodot.Scripts.Facade;
 using GamePackStartProjectGodot.Scripts.Model;
 using Godot;
 using System;
@@ -16,6 +17,10 @@ namespace GamePackStartProjectGodot.Scripts.Controller
         public void Init(Control control)
         {
             mainMenuFacade.Init(control, mainButtonModel);            
+        }
+        public void Update(double delta)
+        {
+            mainMenuFacade.Update(delta, mainButtonModel);            
         }
     }
 }
