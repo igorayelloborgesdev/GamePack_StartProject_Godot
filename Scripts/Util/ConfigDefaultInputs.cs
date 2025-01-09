@@ -14,14 +14,14 @@ namespace GamePackStartProjectGodot.Scripts.Util
         #endregion
         #region Methods
         public static void Init()
-        {
-            keysControlArray.Add(new KeyObj() { keyName = "Escape", keyId = 4194305 });
+        {            
             keysControlArray.Add(new KeyObj() { keyName = "Up", keyId = 4194320 });
             keysControlArray.Add(new KeyObj() { keyName = "Down", keyId = 4194322 });
             keysControlArray.Add(new KeyObj() { keyName = "Left", keyId = 4194319 });
             keysControlArray.Add(new KeyObj() { keyName = "Right", keyId = 4194321 });
             keysControlArray.Add(new KeyObj() { keyName = "A", keyId = 65 });
             keysControlArray.Add(new KeyObj() { keyName = "S", keyId = 83 });
+            keysControlArray.Add(new KeyObj() { keyName = "Escape", keyId = 4194305 });
         }
         #endregion
     }

@@ -16,8 +16,7 @@ namespace GamePackStartProjectGodot.Scripts.Factory
             mainButtonModel.inputKeyLabelConfgInputConcreteColleague1 = new ConfgInputConcreteColleague2(mainButtonModel.confgInputConcreteMediator);
             mainButtonModel.confgInputConcreteMediator.Colleague1 = mainButtonModel.inputKeyConfgInputConcreteColleague1;
             mainButtonModel.confgInputConcreteMediator.Colleague2 = mainButtonModel.inputKeyLabelConfgInputConcreteColleague1;
-            mainButtonModel.inputKeyLabelConfgInputConcreteColleague1.BuilderMainMenuButtonsConfigLabelList(mainButtonModel.mainMenuButtonsConfigLabelList);
-            mainButtonModel.inputKeyLabelConfgInputConcreteColleague1.BuilderMainMenuButtonsConfigButtonList(mainButtonModel.mainMenuButtonsConfigButtonList);
+            mainButtonModel.inputKeyLabelConfgInputConcreteColleague1.BuilderMainMenuButtonsConfigLabelList(mainButtonModel.mainMenuButtonsConfigLabelList);            
             mainButtonModel.inputKeyLabelConfgInputConcreteColleague1.BuilderMainMenuButtonsConfigButtonLabelList(mainButtonModel.mainMenuButtonsConfigButtonLabelList);
         }
     }

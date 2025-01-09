@@ -83,7 +83,7 @@ namespace GamePackStartProjectGodot.Scripts.Facade
                  mainButtonModel.configDTO);
 
             new InputConfigClient().CreateObjects(mainButtonModel);
-            inputConfigSubSystem = new InputConfigSubSystem();
+            inputConfigSubSystem = new InputConfigSubSystem().ConfigInputInitBuilder(mainButtonModel);
         }
         private void AssignEventToButton(List<Button> mainMenuButtonsList, MainMenuButtonComponent mainMenuButtonComponent)
         {            
@@ -131,9 +131,22 @@ namespace GamePackStartProjectGodot.Scripts.Facade
                 if (keyObj is not null)
                 {                    
                     mainButtonModel.configDTO.isAssign = false;
-                    mainButtonModel.inputKeyConfgInputConcreteColleague1.Send(keyObj);
+                    mainButtonModel.inputKeyConfgInputConcreteColleague1.Send(keyObj, mainButtonModel.configDTO.idKey);
                 }                
             }            
+        }
+        public InputConfigSubSystem ConfigInputInitBuilder(MainButtonModel mainButtonModel)
+        {
+            if (ConfigSingleton.saveConfigDTO is null)
+            {
+                ConfigSingleton.saveConfigDTO = new SaveConfigDTO();
+                ConfigSingleton.saveConfigDTO.keysControlArray.AddRange(ConfigDefaultInputs.keysControlArray);
+            }
+            for (int i = 0; i < ConfigSingleton.saveConfigDTO.keysControlArray.Count; i++)
+            {
+                mainButtonModel.inputKeyConfgInputConcreteColleague1.Send(ConfigSingleton.saveConfigDTO.keysControlArray[i], i);
+            }
+            return this;
         }
     }
 }
