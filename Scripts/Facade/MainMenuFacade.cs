@@ -84,6 +84,31 @@ namespace GamePackStartProjectGodot.Scripts.Facade
 
             new InputConfigClient().CreateObjects(mainButtonModel);
             inputConfigSubSystem = new InputConfigSubSystem().ConfigInputInitBuilder(mainButtonModel);
+
+            new MainClient().CreateObjects<Button>(control, mainButtonModel.mainMenuScreenConfigControl_SaveButtonLabel, 
+                out mainButtonModel.mainMenuScreenConfigControl_SaveButton);            
+            new MainClient().CreateObjects<Button>(control, mainButtonModel.mainMenuScreenConfigControl_RestoreButtonLabel,
+                out mainButtonModel.mainMenuScreenConfigControl_RestoreButton);            
+
+            new MainClient().CreateObjects<Control>(control, mainButtonModel.mainMenuScreenModalControlLabel,
+                out mainButtonModel.mainMenuScreenModalControl);
+            new MainClient().CreateObjects<Label>(control, mainButtonModel.mainMenuScreenModalControl_ModalScreenControl_Label,
+                out mainButtonModel.mainMenuScreenModalControlModalScreenControlLabel);
+            new MainClient().CreateObjects<Button>(control, mainButtonModel.mainMenuScreenModalControl_BackButton,
+                out mainButtonModel.mainMenuScreenModalControlBackButton);
+            new MainClient().CreateObjects<Label>(control, mainButtonModel.mainMenuScreenModalControl_TitleNinePatchRect_TitleLabel,
+                out mainButtonModel.mainMenuScreenModalControlTitleNinePatchRectTitleLabel);
+
+            AssignEventToButton(mainButtonModel.mainMenuScreenConfigControl_SaveButton,
+                new ConfigButtonSaveConfigConcreteDecorator()
+                .SetMainButtonModelBuilder(mainButtonModel));
+            AssignEventToButton(mainButtonModel.mainMenuScreenConfigControl_RestoreButton,
+                new ConfigButtonRestoreConfigConcreteDecorator()
+                .SetMainButtonModelBuilder(mainButtonModel));
+
+            AssignEventToButton(mainButtonModel.mainMenuScreenModalControlBackButton,
+                new ConfigButtonModalConfigConcreteDecorator()
+                .SetMainButtonModelBuilder(mainButtonModel));
         }
         private void AssignEventToButton(List<Button> mainMenuButtonsList, MainMenuButtonComponent mainMenuButtonComponent)
         {            

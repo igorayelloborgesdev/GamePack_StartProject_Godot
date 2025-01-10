@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://rfp7ra5qunh0"]
+[gd_scene load_steps=14 format=3 uid="uid://rfp7ra5qunh0"]
 
 [ext_resource type="Texture2D" uid="uid://dgw4aa51oyeky" path="res://Art/2d/NeutralPixel.png" id="1_4s0sp"]
 [ext_resource type="Script" path="res://Scripts/View/MainView.cs" id="1_5ck1u"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cdav1c4n2lus7" path="res://Art/2d/CreditsIco.png" id="7_666oy"]
 [ext_resource type="Texture2D" uid="uid://80ojf0isu0jl" path="res://Art/2d/QuitIco.png" id="8_2h5h1"]
 [ext_resource type="Texture2D" uid="uid://b7kalwsqurvr0" path="res://Art/2d/ConfirmCheckIco.png" id="10_77uup"]
+[ext_resource type="Texture2D" uid="uid://c3hpb33bdg3pf" path="res://Art/2d/SaveIco.png" id="11_gn63w"]
+[ext_resource type="Texture2D" uid="uid://bixdqhjxgwn0" path="res://Art/2d/RestoreIco.png" id="12_2k77e"]
 
 [sub_resource type="Theme" id="Theme_o5acb"]
 default_font = ExtResource("2_igc77")
@@ -1264,6 +1266,214 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="MainMenuScreenConfigControl/LanguageScreenControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.244
+anchor_top = 0.234
+anchor_right = 0.756
+anchor_bottom = 0.766
+offset_left = -0.880035
+offset_top = -0.110016
+offset_right = 0.880005
+offset_bottom = 0.109985
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o5acb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Idioma"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SaveButton" type="Button" parent="MainMenuScreenConfigControl"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.445167
+anchor_top = 0.631333
+anchor_right = 0.478167
+anchor_bottom = 0.696333
+offset_left = -0.276611
+offset_top = 0.0243149
+offset_right = 0.958374
+offset_bottom = -0.160675
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/SaveButton"]
+modulate = Color(0.764706, 0.764706, 0.764706, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4s0sp")
+region_rect = Rect2(10, 0, 10, 0)
+
+[node name="TextureRect" type="TextureRect" parent="MainMenuScreenConfigControl/SaveButton/TitleNinePatchRect"]
+self_modulate = Color(0.47451, 0.47451, 0.47451, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.111
+anchor_top = 0.146
+anchor_right = 0.913
+anchor_bottom = 0.83
+offset_left = 0.0589695
+offset_top = -0.012001
+offset_right = -0.0110321
+offset_bottom = -0.00400162
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_gn63w")
+expand_mode = 1
+
+[node name="RestoreButton" type="Button" parent="MainMenuScreenConfigControl"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.486833
+anchor_top = 0.631333
+anchor_right = 0.519833
+anchor_bottom = 0.696333
+offset_left = -0.276611
+offset_top = 0.0243149
+offset_right = 0.958374
+offset_bottom = -0.160675
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/RestoreButton"]
+modulate = Color(0.764706, 0.764706, 0.764706, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4s0sp")
+region_rect = Rect2(10, 0, 10, 0)
+
+[node name="TextureRect" type="TextureRect" parent="MainMenuScreenConfigControl/RestoreButton/TitleNinePatchRect"]
+self_modulate = Color(0.47451, 0.47451, 0.47451, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.111
+anchor_top = 0.071
+anchor_right = 0.881
+anchor_bottom = 0.928
+offset_left = -0.170055
+offset_top = 0.0289292
+offset_right = 2.09172
+offset_bottom = 0.0260086
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_2k77e")
+expand_mode = 1
+
+[node name="MainMenuScreenModalControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="TextureRect" parent="MainMenuScreenModalControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4s0sp")
+
+[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenModalControl"]
+modulate = Color(0.764706, 0.764706, 0.764706, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.288
+anchor_top = 0.096
+anchor_right = 0.626
+anchor_bottom = 0.162
+offset_left = 0.201111
+offset_top = -0.480934
+offset_right = -0.372192
+offset_bottom = 0.11528
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4s0sp")
+region_rect = Rect2(10, 0, 10, 0)
+axis_stretch_vertical = 1
+
+[node name="TitleLabel" type="Label" parent="MainMenuScreenModalControl/TitleNinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_igc77")
+theme_override_font_sizes/font_size = 32
+text = "Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="MainMenuScreenModalControl"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.641
+anchor_top = 0.098
+anchor_right = 0.674
+anchor_bottom = 0.163
+offset_left = -0.276611
+offset_top = 0.0243149
+offset_right = 0.958374
+offset_bottom = -0.160675
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenModalControl/BackButton"]
+modulate = Color(0.764706, 0.764706, 0.764706, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4s0sp")
+region_rect = Rect2(10, 0, 10, 0)
+
+[node name="TextureRect" type="TextureRect" parent="MainMenuScreenModalControl/BackButton/TitleNinePatchRect"]
+self_modulate = Color(0.47451, 0.47451, 0.47451, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.111
+anchor_top = 0.146
+anchor_right = 0.913
+anchor_bottom = 0.83
+offset_left = 0.0589695
+offset_top = -0.012001
+offset_right = -0.0110321
+offset_bottom = -0.00400162
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_2h5h1")
+expand_mode = 1
+
+[node name="ModalScreenControl" type="Control" parent="MainMenuScreenModalControl"]
+layout_mode = 1
+anchor_top = 0.22
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.399979
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenuScreenModalControl/ModalScreenControl"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.244

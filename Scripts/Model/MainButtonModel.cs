@@ -40,6 +40,12 @@ namespace GamePackStartProjectGodot.Scripts.Model
             "InputButton2Button",
             "InputPauseButton"
         };
+        public string mainMenuScreenConfigControl_SaveButtonLabel { get; set; } = "MainMenuScreenConfigControl/SaveButton";
+        public string mainMenuScreenConfigControl_RestoreButtonLabel { get; set; } = "MainMenuScreenConfigControl/RestoreButton";
+        public string mainMenuScreenModalControlLabel { get; set; } = "MainMenuScreenModalControl";
+        public string mainMenuScreenModalControl_ModalScreenControl_Label { get; set; } = "MainMenuScreenModalControl/ModalScreenControl/Label";
+        public string mainMenuScreenModalControl_BackButton { get; set; } = "MainMenuScreenModalControl/BackButton";
+        public string mainMenuScreenModalControl_TitleNinePatchRect_TitleLabel { get; set; } = "MainMenuScreenModalControl/TitleNinePatchRect/TitleLabel";
         #endregion
         #region UI
         public List<Button> mainMenuButtonsList { get; set; } = new List<Button>();
@@ -55,6 +61,13 @@ namespace GamePackStartProjectGodot.Scripts.Model
         public List<Label> mainMenuButtonsConfigLabelList { get; set; } = new List<Label>();
         public List<Button> mainMenuButtonsConfigButtonList { get; set; } = new List<Button>();
         public List<Label> mainMenuButtonsConfigButtonLabelList { get; set; } = new List<Label>();
+        public Button mainMenuScreenConfigControl_SaveButton;
+        public Button mainMenuScreenConfigControl_RestoreButton;
+
+        public Control mainMenuScreenModalControl;
+        public Label mainMenuScreenModalControlModalScreenControlLabel;
+        public Button mainMenuScreenModalControlBackButton;
+        public Label mainMenuScreenModalControlTitleNinePatchRectTitleLabel;
         #endregion
         #region Variables
         public ConfigDTO configDTO { get; set; } = new ConfigDTO();
