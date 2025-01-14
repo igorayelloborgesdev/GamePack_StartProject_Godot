@@ -46,6 +46,12 @@ namespace GamePackStartProjectGodot.Scripts.Model
         public string mainMenuScreenModalControl_ModalScreenControl_Label { get; set; } = "MainMenuScreenModalControl/ModalScreenControl/Label";
         public string mainMenuScreenModalControl_BackButton { get; set; } = "MainMenuScreenModalControl/BackButton";
         public string mainMenuScreenModalControl_TitleNinePatchRect_TitleLabel { get; set; } = "MainMenuScreenModalControl/TitleNinePatchRect/TitleLabel";
+
+        public string mainMenuScreenConfigControl_JoystickButtonLabel { get; set; } = "MainMenuScreenConfigControl/JoystickButton";
+        public string mainMenuScreenConfigControl_KeyboardButtonLabel { get; set; } = "MainMenuScreenConfigControl/KeyboardButton";
+
+        public string mainMenuScreenConfigControl_JoystickButton_TitleNinePatchRect_Label { get; set; } = "MainMenuScreenConfigControl/JoystickButton/TitleNinePatchRect/Label";
+        public string mainMenuScreenConfigControl_KeyboardButton_TitleNinePatchRect_Label { get; set; } = "MainMenuScreenConfigControl/KeyboardButton/TitleNinePatchRect/Label";
         #endregion
         #region UI
         public List<Button> mainMenuButtonsList { get; set; } = new List<Button>();
@@ -63,11 +69,16 @@ namespace GamePackStartProjectGodot.Scripts.Model
         public List<Label> mainMenuButtonsConfigButtonLabelList { get; set; } = new List<Label>();
         public Button mainMenuScreenConfigControl_SaveButton;
         public Button mainMenuScreenConfigControl_RestoreButton;
-
         public Control mainMenuScreenModalControl;
         public Label mainMenuScreenModalControlModalScreenControlLabel;
         public Button mainMenuScreenModalControlBackButton;
         public Label mainMenuScreenModalControlTitleNinePatchRectTitleLabel;
+        public Button mainMenuScreenConfigControl_JoystickButton;
+        public Button mainMenuScreenConfigControl_KeyboardButton;
+        public Label mainMenuScreenConfigControl_JoystickButton_Label;
+        public Label mainMenuScreenConfigControl_KeyboardButton_Label;
+        public List<Label> mainMenuButtonsConfigKeyLabelList { get; set; } = new List<Label>();
+        public List<Button> mainMenuButtonsConfigKeyButtonList { get; set; } = new List<Button>();
         #endregion
         #region Variables
         public ConfigDTO configDTO { get; set; } = new ConfigDTO();

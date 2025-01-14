@@ -1289,9 +1289,9 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.445167
-anchor_top = 0.631333
+anchor_top = 0.66837
 anchor_right = 0.478167
-anchor_bottom = 0.696333
+anchor_bottom = 0.73337
 offset_left = -0.276611
 offset_top = 0.0243149
 offset_right = 0.958374
@@ -1333,9 +1333,9 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.486833
-anchor_top = 0.631333
+anchor_top = 0.66837
 anchor_right = 0.519833
-anchor_bottom = 0.696333
+anchor_bottom = 0.73337
 offset_left = -0.276611
 offset_top = 0.0243149
 offset_right = 0.958374
@@ -1371,6 +1371,88 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("12_2k77e")
 expand_mode = 1
+
+[node name="JoystickButton" type="Button" parent="MainMenuScreenConfigControl"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.490769
+anchor_top = 0.587015
+anchor_right = 0.66773
+anchor_bottom = 0.643667
+offset_left = -0.276611
+offset_top = 0.0243149
+offset_right = 0.958374
+offset_bottom = -0.160675
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/JoystickButton"]
+modulate = Color(0.764706, 0.764706, 0.764706, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4s0sp")
+region_rect = Rect2(10, 0, 10, 0)
+
+[node name="Label" type="Label" parent="MainMenuScreenConfigControl/JoystickButton/TitleNinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o5acb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Joystick"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyboardButton" type="Button" parent="MainMenuScreenConfigControl"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.299102
+anchor_top = 0.587015
+anchor_right = 0.476063
+anchor_bottom = 0.643667
+offset_left = -0.276611
+offset_top = 0.0243149
+offset_right = 0.958374
+offset_bottom = -0.160675
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/KeyboardButton"]
+modulate = Color(0.764706, 0.764706, 0.764706, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4s0sp")
+region_rect = Rect2(10, 0, 10, 0)
+
+[node name="Label" type="Label" parent="MainMenuScreenConfigControl/KeyboardButton/TitleNinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o5acb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Keyboard"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MainMenuScreenModalControl" type="Control" parent="."]
 layout_mode = 1

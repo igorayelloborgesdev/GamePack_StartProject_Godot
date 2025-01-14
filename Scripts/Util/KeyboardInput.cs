@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GamePackStartProjectGodot.Scripts.Util
 {
-    public class KeyboardInput
+    public class KeyboardInput : KeyAbstract
     {
-        public static KeyObj GetKeyPressed()
+        public override KeyObj GetKeyPressed()
         {
             if (Input.IsAnythingPressed())
             {

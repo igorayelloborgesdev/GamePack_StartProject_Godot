@@ -58,7 +58,7 @@ namespace GamePackStartProjectGodot.Scripts.Mediator
     public class ConfgInputConcreteColleague2 : ConfgInputColleague
     {
         protected List<Label> mainMenuButtonsConfigLabelList;        
-        protected List<Label> mainMenuButtonsConfigButtonLabelList;
+        protected List<Label> mainMenuButtonsConfigButtonLabelList;        
         protected string colorNormal = "000000";        
         public ConfgInputConcreteColleague2(ConfgInputMediator mediator)
             : base(mediator)
@@ -74,7 +74,7 @@ namespace GamePackStartProjectGodot.Scripts.Mediator
         {
             this.mainMenuButtonsConfigButtonLabelList = mainMenuButtonsConfigButtonLabelList;
             return this;
-        }
+        }        
         public void Send(KeyObj keyObj, int id)
         {
             mediator.Send(keyObj, this, id);
@@ -83,7 +83,7 @@ namespace GamePackStartProjectGodot.Scripts.Mediator
         {            
             SetLabelColor(mainMenuButtonsConfigLabelList, colorNormal);
             SetLabelColor(mainMenuButtonsConfigButtonLabelList, colorNormal);
-            SetLabelText(mainMenuButtonsConfigButtonLabelList[id], keyObj.keyName);
+            SetLabelText(mainMenuButtonsConfigButtonLabelList[id], keyObj.keyName);            
             SetKeyObj(keyObj, id);
         }
         private void SetLabelColor(List<Label> labelList, string colorName)

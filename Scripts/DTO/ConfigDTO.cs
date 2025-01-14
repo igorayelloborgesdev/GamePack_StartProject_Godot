@@ -10,5 +10,6 @@ namespace GamePackStartProjectGodot.Scripts.DTO
     {
         public bool isAssign = false;
         public int idKey = -1;
+        public int idKeyInput = -1;
     }
 }

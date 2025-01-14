@@ -151,6 +151,8 @@ public class ConfigButtonSaveConfigConcreteDecorator : MainMenuButtonComponent
 public class ConfigButtonRestoreConfigConcreteDecorator : MainMenuButtonComponent
 {
     protected MainButtonModel mainButtonModel;
+    protected string colorNormal = "000000";
+    protected string colorSelected = "e7a706";
     public override void Operation<T>(int id)
     {
 
@@ -159,6 +161,8 @@ public class ConfigButtonRestoreConfigConcreteDecorator : MainMenuButtonComponen
     {
         ConfigSingleton.saveConfigDTO = new SaveConfigDTO();
         ConfigSingleton.saveConfigDTO.keysControlArray.AddRange(ConfigDefaultInputs.keysControlArray);
+        ConfigSingleton.saveConfigDTO.keyboardJoystick = 0;
+        mainButtonModel.configDTO.idKeyInput = 0;
         for (int i = 0; i < ConfigSingleton.saveConfigDTO.keysControlArray.Count; i++)
         {
             mainButtonModel.inputKeyConfgInputConcreteColleague1.Send(ConfigSingleton.saveConfigDTO.keysControlArray[i], i);
@@ -168,6 +172,8 @@ public class ConfigButtonRestoreConfigConcreteDecorator : MainMenuButtonComponen
         mainButtonModel.mainMenuScreenModalControlTitleNinePatchRectTitleLabel.Text = "Restore config";
         mainButtonModel.mainMenuScreenModalControlModalScreenControlLabel.Text = "Config restored";
         mainButtonModel.mainMenuScreenModalControl.Show();
+        (mainButtonModel.mainMenuButtonsConfigKeyLabelList[0] as Godot.Label).AddThemeColorOverride("font_color", new Color(colorSelected));
+        (mainButtonModel.mainMenuButtonsConfigKeyLabelList[1] as Godot.Label).AddThemeColorOverride("font_color", new Color(colorNormal));
     }
     public override MainMenuButtonComponent SetObserverBuilder<T>(List<T> observerList)
     {

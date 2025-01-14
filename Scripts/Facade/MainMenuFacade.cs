@@ -80,10 +80,7 @@ namespace GamePackStartProjectGodot.Scripts.Facade
 
             AssignEventToButton(mainButtonModel.mainMenuButtonsConfigButtonList, new ConfigInputButtonConcreteDecorator()
                 .SetObserverBuilder<Label>(mainButtonModel.mainMenuButtonsConfigLabelList, mainButtonModel.mainMenuButtonsConfigButtonLabelList), 
-                 mainButtonModel.configDTO);
-
-            new InputConfigClient().CreateObjects(mainButtonModel);
-            inputConfigSubSystem = new InputConfigSubSystem().ConfigInputInitBuilder(mainButtonModel);
+                 mainButtonModel.configDTO, -1, false);            
 
             new MainClient().CreateObjects<Button>(control, mainButtonModel.mainMenuScreenConfigControl_SaveButtonLabel, 
                 out mainButtonModel.mainMenuScreenConfigControl_SaveButton);            
@@ -109,6 +106,31 @@ namespace GamePackStartProjectGodot.Scripts.Facade
             AssignEventToButton(mainButtonModel.mainMenuScreenModalControlBackButton,
                 new ConfigButtonModalConfigConcreteDecorator()
                 .SetMainButtonModelBuilder(mainButtonModel));
+
+            new MainClient().CreateObjects<Button>(control, mainButtonModel.mainMenuScreenConfigControl_JoystickButtonLabel,
+                out mainButtonModel.mainMenuScreenConfigControl_JoystickButton);
+
+            new MainClient().CreateObjects<Button>(control, mainButtonModel.mainMenuScreenConfigControl_KeyboardButtonLabel,
+                out mainButtonModel.mainMenuScreenConfigControl_KeyboardButton);
+
+            new MainClient().CreateObjects<Label>(control, mainButtonModel.mainMenuScreenConfigControl_JoystickButton_TitleNinePatchRect_Label,
+                out mainButtonModel.mainMenuScreenConfigControl_JoystickButton_Label);
+
+            new MainClient().CreateObjects<Label>(control, mainButtonModel.mainMenuScreenConfigControl_KeyboardButton_TitleNinePatchRect_Label,
+                out mainButtonModel.mainMenuScreenConfigControl_KeyboardButton_Label);
+            
+            mainButtonModel.mainMenuButtonsConfigKeyButtonList.Add(mainButtonModel.mainMenuScreenConfigControl_KeyboardButton);
+            mainButtonModel.mainMenuButtonsConfigKeyButtonList.Add(mainButtonModel.mainMenuScreenConfigControl_JoystickButton);
+            
+            mainButtonModel.mainMenuButtonsConfigKeyLabelList.Add(mainButtonModel.mainMenuScreenConfigControl_KeyboardButton_Label);
+            mainButtonModel.mainMenuButtonsConfigKeyLabelList.Add(mainButtonModel.mainMenuScreenConfigControl_JoystickButton_Label);
+
+            AssignEventToButton(mainButtonModel.mainMenuButtonsConfigKeyButtonList, new ConfigInputButtonKeyConcreteDecorator()
+                .SetObserverBuilder<Label>(mainButtonModel.mainMenuButtonsConfigKeyLabelList, mainButtonModel.mainMenuButtonsConfigKeyLabelList),
+                 mainButtonModel.configDTO, 0, true);
+
+            new InputConfigClient().CreateObjects(mainButtonModel);
+            inputConfigSubSystem = new InputConfigSubSystem().ConfigInputInitBuilder(mainButtonModel);
         }
         private void AssignEventToButton(List<Button> mainMenuButtonsList, MainMenuButtonComponent mainMenuButtonComponent)
         {            
@@ -129,7 +151,7 @@ namespace GamePackStartProjectGodot.Scripts.Facade
         {
             mainMenuButtons.Pressed += () => { mainMenuButtonComponent.Operation<Button>(id); };
         }
-        private void AssignEventToButton(List<Button> mainMenuButtonsList, ConfigButtonComponent configButtonComponent, ConfigDTO configDTO)
+        private void AssignEventToButton(List<Button> mainMenuButtonsList, ConfigButtonComponent configButtonComponent, ConfigDTO configDTO, int initId, bool isInput)
         {
             int count = 0;            
             foreach (var mainMenuButton in mainMenuButtonsList)
@@ -138,7 +160,12 @@ namespace GamePackStartProjectGodot.Scripts.Facade
                 mainMenuButton.Pressed += () => { configButtonComponent.Operation<Button>(countNew, configDTO); };
                 count++;
             }
-            configButtonComponent.Operation<Button>(-1, configDTO);
+            
+            if(isInput)
+                configButtonComponent.Operation<Button>(ConfigSingleton.saveConfigDTO is null ? 0 : ConfigSingleton.saveConfigDTO.keyboardJoystick, configDTO);
+            else
+                configButtonComponent.Operation<Button>(initId, configDTO);
+
         }
         public void Update(double delta, MainButtonModel mainButtonModel)
         {                        
@@ -147,12 +174,18 @@ namespace GamePackStartProjectGodot.Scripts.Facade
     }
     public class InputConfigSubSystem
     {
+        KeyAbstract keyInput = new KeyboardInput();
         public void ConfigInput(MainButtonModel mainButtonModel)
         {            
             KeyObj keyObj = null;
             if (mainButtonModel.configDTO.isAssign)
             {
-                keyObj = KeyboardInput.GetKeyPressed();
+                if(mainButtonModel.configDTO.idKeyInput == 0)
+                    keyInput = new KeyboardInput();
+                else
+                    keyInput = new JoystickInput();
+
+                keyObj = keyInput.GetKeyPressed();
                 if (keyObj is not null)
                 {                    
                     mainButtonModel.configDTO.isAssign = false;
@@ -161,7 +194,7 @@ namespace GamePackStartProjectGodot.Scripts.Facade
             }            
         }
         public InputConfigSubSystem ConfigInputInitBuilder(MainButtonModel mainButtonModel)
-        {
+        {            
             if (ConfigSingleton.saveConfigDTO is null)
             {
                 ConfigSingleton.saveConfigDTO = new SaveConfigDTO();
@@ -171,6 +204,11 @@ namespace GamePackStartProjectGodot.Scripts.Facade
             {
                 mainButtonModel.inputKeyConfgInputConcreteColleague1.Send(ConfigSingleton.saveConfigDTO.keysControlArray[i], i);
             }
+            return this;
+        }
+        public InputConfigSubSystem KeyInputBuilder(KeyAbstract keyInput)
+        {
+            this.keyInput = keyInput;
             return this;
         }
     }
