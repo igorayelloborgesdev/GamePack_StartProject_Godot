@@ -1,6 +1,7 @@
 using GamePackStartProjectGodot.Scripts.DTO;
 using GamePackStartProjectGodot.Scripts.Model;
 using GamePackStartProjectGodot.Scripts.Observer;
+using GamePackStartProjectGodot.Scripts.Singleton;
 using GamePackStartProjectGodot.Scripts.Util;
 using Godot;
 using System;
@@ -13,14 +14,24 @@ public abstract class MainMenuButtonComponent
     public abstract MainMenuButtonComponent SetObserverBuilder<T>(List<T> observerList) where T : Node;
     public abstract MainMenuButtonComponent SetObserverBuilder<T>(T observer) where T : Node;
     public abstract MainMenuButtonComponent SetMainButtonModelBuilder(MainButtonModel mainButtonModel);
+    public abstract MainMenuSubject GetMainMenuSubject();    
 }
 public class MainMenuButtonConcreteDecorator : MainMenuButtonComponent
 {
     protected List<Node> observerList = new List<Node>();
     protected Node observerTitle = new Node();
-    protected MainMenuSubjectConcreteSubject mainMenuSubjectConcreteSubject = new MainMenuSubjectConcreteSubject();    
-    public override void Operation<T>(int id)
+    protected MainMenuSubjectConcreteSubject mainMenuSubjectConcreteSubject = new MainMenuSubjectConcreteSubject();
+    protected Dictionary<int, string> menuLanguage = new Dictionary<int, string>() 
     {
+        { 0, "main"},
+        { 1, "tutorial"},
+        { 2, "config"},
+        { 3, "load"},
+        { 4, "credits"},
+        { 5, "quit"}
+    };
+    public override void Operation<T>(int id)
+    {        
         foreach (var node in observerList) 
         {
             var obj = node as Control;   
@@ -29,8 +40,9 @@ public class MainMenuButtonConcreteDecorator : MainMenuButtonComponent
         }
         var objShow = observerList[id] as Control;
         objShow.Show();
-        mainMenuSubjectConcreteSubject.SubjectState = id.ToString();
-        mainMenuSubjectConcreteSubject.Notify();
+        mainMenuSubjectConcreteSubject.SubjectState = LanguageSingleton.selectedLanguage[menuLanguage[id]];
+        mainMenuSubjectConcreteSubject.KeyState = menuLanguage[id];
+        mainMenuSubjectConcreteSubject.Notify();        
     }
     public override void Operation<T>(){ }
     public override MainMenuButtonComponent SetObserverBuilder<T>(List<T> observerList)
@@ -45,6 +57,11 @@ public class MainMenuButtonConcreteDecorator : MainMenuButtonComponent
         return this;
     }
     public override MainMenuButtonComponent SetMainButtonModelBuilder(MainButtonModel mainButtonModel) { return this; }
+
+    public override MainMenuSubject GetMainMenuSubject()
+    { 
+        return mainMenuSubjectConcreteSubject; 
+    }
 }
 
 public class MainMenuQuitButtonConcreteDecorator : MainMenuButtonComponent
@@ -65,6 +82,10 @@ public class MainMenuQuitButtonConcreteDecorator : MainMenuButtonComponent
         return this;
     }
     public override MainMenuButtonComponent SetMainButtonModelBuilder(MainButtonModel mainButtonModel) { return this; }
+    public override MainMenuSubject GetMainMenuSubject()
+    {
+        return null;
+    }
 }
 
 public class ConfigButtonConcreteDecorator : MainMenuButtonComponent
@@ -73,6 +94,11 @@ public class ConfigButtonConcreteDecorator : MainMenuButtonComponent
     protected Node observer;
     protected Node observerTitle;
     protected MainMenuSubjectConcreteSubject mainMenuSubjectConcreteSubject = new MainMenuSubjectConcreteSubject();
+    protected Dictionary<int, string> menuLanguage = new Dictionary<int, string>()
+    {
+        { 0, "input"},
+        { 1, "language"}        
+    };
     public override void Operation<T>(int id)
     {
         foreach (var node in observerList)
@@ -86,7 +112,8 @@ public class ConfigButtonConcreteDecorator : MainMenuButtonComponent
         var obj = observer as Control;
         if (obj != null)
             obj.Show();
-        mainMenuSubjectConcreteSubject.SubjectState = id.ToString();
+        mainMenuSubjectConcreteSubject.SubjectState = LanguageSingleton.selectedLanguage[menuLanguage[id]];
+        mainMenuSubjectConcreteSubject.KeyState = menuLanguage[id];
         mainMenuSubjectConcreteSubject.Notify();
     }
     public override void Operation<T>() 
@@ -115,11 +142,21 @@ public class ConfigButtonConcreteDecorator : MainMenuButtonComponent
         return this;
     }
     public override MainMenuButtonComponent SetMainButtonModelBuilder(MainButtonModel mainButtonModel) { return this; }
+    public override MainMenuSubject GetMainMenuSubject()
+    {
+        return mainMenuSubjectConcreteSubject;
+    }
 }
 
 public class ConfigButtonSaveConfigConcreteDecorator : MainMenuButtonComponent
 {
     protected MainButtonModel mainButtonModel;
+    protected Dictionary<int, string> menuLanguage = new Dictionary<int, string>()
+    {
+        { 0, "configSaved"},
+        { 1, "configSavedError"},
+        { 2, "saveConfig"}    
+    };
     public override void Operation<T>(int id)
     {
         
@@ -127,10 +164,10 @@ public class ConfigButtonSaveConfigConcreteDecorator : MainMenuButtonComponent
     public override void Operation<T>()
     {
         if (SaveLoad.SaveConfig<SaveConfigDTO>(ConfigSingleton.saveConfigDTO))        
-            mainButtonModel.mainMenuScreenModalControlModalScreenControlLabel.Text = "Config Saved";        
+            mainButtonModel.mainMenuScreenModalControlModalScreenControlLabel.Text = LanguageSingleton.selectedLanguage[menuLanguage[0]];        
         else        
-            mainButtonModel.mainMenuScreenModalControlModalScreenControlLabel.Text = "ERROR: Config NOT Saved";        
-        mainButtonModel.mainMenuScreenModalControlTitleNinePatchRectTitleLabel.Text = "Save config";
+            mainButtonModel.mainMenuScreenModalControlModalScreenControlLabel.Text = LanguageSingleton.selectedLanguage[menuLanguage[1]];        
+        mainButtonModel.mainMenuScreenModalControlTitleNinePatchRectTitleLabel.Text = LanguageSingleton.selectedLanguage[menuLanguage[2]];
         mainButtonModel.mainMenuScreenModalControl.Show();
     }
     public override MainMenuButtonComponent SetObserverBuilder<T>(List<T> observerList)
@@ -147,19 +184,30 @@ public class ConfigButtonSaveConfigConcreteDecorator : MainMenuButtonComponent
         mainButtonModel.mainMenuScreenModalControl.Hide();
         return this;
     }
+    public override MainMenuSubject GetMainMenuSubject()
+    {
+        return null;
+    }
 }
 public class ConfigButtonRestoreConfigConcreteDecorator : MainMenuButtonComponent
 {
     protected MainButtonModel mainButtonModel;
     protected string colorNormal = "000000";
     protected string colorSelected = "e7a706";
+    protected Dictionary<int, string> menuLanguage = new Dictionary<int, string>()
+    {
+        { 0, "restoreConfig"},
+        { 1, "restoredConfig"}      
+    };
     public override void Operation<T>(int id)
     {
 
     }
     public override void Operation<T>()
     {
-        ConfigSingleton.saveConfigDTO = new SaveConfigDTO();
+        if(ConfigSingleton.saveConfigDTO is null)
+            ConfigSingleton.saveConfigDTO = new SaveConfigDTO();
+        ConfigSingleton.saveConfigDTO.keysControlArray.Clear();
         ConfigSingleton.saveConfigDTO.keysControlArray.AddRange(ConfigDefaultInputs.keysControlArray);
         ConfigSingleton.saveConfigDTO.keyboardJoystick = 0;
         mainButtonModel.configDTO.idKeyInput = 0;
@@ -167,10 +215,13 @@ public class ConfigButtonRestoreConfigConcreteDecorator : MainMenuButtonComponen
         {
             mainButtonModel.inputKeyConfgInputConcreteColleague1.Send(ConfigSingleton.saveConfigDTO.keysControlArray[i], i);
         }
-        SaveLoad.DeleteConfigFile();
+        if(ConfigSingleton.saveConfigDTO.languageId == 0)
+            SaveLoad.DeleteConfigFile();    
+        else
+            SaveLoad.SaveConfig<SaveConfigDTO>(ConfigSingleton.saveConfigDTO);
 
-        mainButtonModel.mainMenuScreenModalControlTitleNinePatchRectTitleLabel.Text = "Restore config";
-        mainButtonModel.mainMenuScreenModalControlModalScreenControlLabel.Text = "Config restored";
+        mainButtonModel.mainMenuScreenModalControlTitleNinePatchRectTitleLabel.Text = LanguageSingleton.selectedLanguage[menuLanguage[0]];
+        mainButtonModel.mainMenuScreenModalControlModalScreenControlLabel.Text = LanguageSingleton.selectedLanguage[menuLanguage[1]];
         mainButtonModel.mainMenuScreenModalControl.Show();
         (mainButtonModel.mainMenuButtonsConfigKeyLabelList[0] as Godot.Label).AddThemeColorOverride("font_color", new Color(colorSelected));
         (mainButtonModel.mainMenuButtonsConfigKeyLabelList[1] as Godot.Label).AddThemeColorOverride("font_color", new Color(colorNormal));
@@ -187,6 +238,10 @@ public class ConfigButtonRestoreConfigConcreteDecorator : MainMenuButtonComponen
     { 
         this.mainButtonModel = mainButtonModel;
         return this; 
+    }
+    public override MainMenuSubject GetMainMenuSubject()
+    {
+        return null;
     }
 }
 public class ConfigButtonModalConfigConcreteDecorator : MainMenuButtonComponent
@@ -212,5 +267,9 @@ public class ConfigButtonModalConfigConcreteDecorator : MainMenuButtonComponent
     {
         this.mainButtonModel = mainButtonModel;
         return this;
+    }
+    public override MainMenuSubject GetMainMenuSubject()
+    {
+        return null;
     }
 }

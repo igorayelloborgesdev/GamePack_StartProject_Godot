@@ -1,5 +1,7 @@
-﻿using GamePackStartProjectGodot.Scripts.DTO;
+﻿using GamePackStartProjectGodot.Scripts.Command;
+using GamePackStartProjectGodot.Scripts.DTO;
 using GamePackStartProjectGodot.Scripts.Mediator;
+using GamePackStartProjectGodot.Scripts.Observer;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -40,18 +42,30 @@ namespace GamePackStartProjectGodot.Scripts.Model
             "InputButton2Button",
             "InputPauseButton"
         };
-        public string mainMenuScreenConfigControl_SaveButtonLabel { get; set; } = "MainMenuScreenConfigControl/SaveButton";
-        public string mainMenuScreenConfigControl_RestoreButtonLabel { get; set; } = "MainMenuScreenConfigControl/RestoreButton";
+        public string mainMenuScreenConfigControl_SaveButtonLabel { get; set; } = "MainMenuScreenConfigControl/InputScreenControl/SaveButton";
+        public string mainMenuScreenConfigControl_RestoreButtonLabel { get; set; } = "MainMenuScreenConfigControl/InputScreenControl/RestoreButton";
         public string mainMenuScreenModalControlLabel { get; set; } = "MainMenuScreenModalControl";
         public string mainMenuScreenModalControl_ModalScreenControl_Label { get; set; } = "MainMenuScreenModalControl/ModalScreenControl/Label";
         public string mainMenuScreenModalControl_BackButton { get; set; } = "MainMenuScreenModalControl/BackButton";
         public string mainMenuScreenModalControl_TitleNinePatchRect_TitleLabel { get; set; } = "MainMenuScreenModalControl/TitleNinePatchRect/TitleLabel";
-
-        public string mainMenuScreenConfigControl_JoystickButtonLabel { get; set; } = "MainMenuScreenConfigControl/JoystickButton";
-        public string mainMenuScreenConfigControl_KeyboardButtonLabel { get; set; } = "MainMenuScreenConfigControl/KeyboardButton";
-
-        public string mainMenuScreenConfigControl_JoystickButton_TitleNinePatchRect_Label { get; set; } = "MainMenuScreenConfigControl/JoystickButton/TitleNinePatchRect/Label";
-        public string mainMenuScreenConfigControl_KeyboardButton_TitleNinePatchRect_Label { get; set; } = "MainMenuScreenConfigControl/KeyboardButton/TitleNinePatchRect/Label";
+        public string mainMenuScreenConfigControl_JoystickButtonLabel { get; set; } = "MainMenuScreenConfigControl/InputScreenControl/JoystickButton";
+        public string mainMenuScreenConfigControl_KeyboardButtonLabel { get; set; } = "MainMenuScreenConfigControl/InputScreenControl/KeyboardButton";
+        public string mainMenuScreenConfigControl_JoystickButton_TitleNinePatchRect_Label { get; set; } = "MainMenuScreenConfigControl/InputScreenControl/JoystickButton/TitleNinePatchRect/Label";
+        public string mainMenuScreenConfigControl_KeyboardButton_TitleNinePatchRect_Label { get; set; } = "MainMenuScreenConfigControl/InputScreenControl/KeyboardButton/TitleNinePatchRect/Label";        
+        public string mainMenuScreenControl_Label { get; set; } = "MainMenuScreenControl";
+        public string mainMenuScreenControl_ConfigButton_Label { get; set; } = "MainMenuScreenControl/MainMenuScreenControl2";
+        public string mainMenuScreenControl_InputScreenControl_Label { get; set; } = "MainMenuScreenConfigControl/InputScreenControl";
+        public string mainMenuScreenConfigControl_LanguageScreenControl_LangButton_Control { get; set; } = "MainMenuScreenConfigControl/LanguageScreenControl";
+        public string[] mainMenuScreenConfigControl_LanguageScreenControl_LangButton_Array_Label { get; set; } =
+        {
+            "Lang0Button",
+            "Lang1Button",
+        };
+        public string[] mainMenuScreenConfigControl_LanguageScreenControl_LangLabel_Array_Label { get; set; } =
+        {
+            "Lang0Button/TitleNinePatchRect",
+            "Lang1Button/TitleNinePatchRect",
+        };
         #endregion
         #region UI
         public List<Button> mainMenuButtonsList { get; set; } = new List<Button>();
@@ -64,7 +78,7 @@ namespace GamePackStartProjectGodot.Scripts.Model
         public Button mainMenuScreenConfigControl_BackButton;
         public Label mainMenuScreenConfigControlTitleNinePatchRectTitleLabel;
         public List<Control> mainMenuScreenConfigControlList { get; set; } = new List<Control>();
-        public List<Label> mainMenuButtonsConfigLabelList { get; set; } = new List<Label>();
+        public List<LangStatic> mainMenuButtonsConfigLabelList { get; set; } = new List<LangStatic>();
         public List<Button> mainMenuButtonsConfigButtonList { get; set; } = new List<Button>();
         public List<Label> mainMenuButtonsConfigButtonLabelList { get; set; } = new List<Label>();
         public Button mainMenuScreenConfigControl_SaveButton;
@@ -75,16 +89,22 @@ namespace GamePackStartProjectGodot.Scripts.Model
         public Label mainMenuScreenModalControlTitleNinePatchRectTitleLabel;
         public Button mainMenuScreenConfigControl_JoystickButton;
         public Button mainMenuScreenConfigControl_KeyboardButton;
-        public Label mainMenuScreenConfigControl_JoystickButton_Label;
-        public Label mainMenuScreenConfigControl_KeyboardButton_Label;
+        public LangStatic mainMenuScreenConfigControl_JoystickButton_Label;
+        public LangStatic mainMenuScreenConfigControl_KeyboardButton_Label;
         public List<Label> mainMenuButtonsConfigKeyLabelList { get; set; } = new List<Label>();
         public List<Button> mainMenuButtonsConfigKeyButtonList { get; set; } = new List<Button>();
+        public List<LangStatic> langStaticList = new List<LangStatic>();
+        public List<Button> mainMenuButtonsLangKeyButtonList { get; set; } = new List<Button>();
+        public List<Label> mainMenuButtonsLangKeyLabelList { get; set; } = new List<Label>();
         #endregion
         #region Variables
         public ConfigDTO configDTO { get; set; } = new ConfigDTO();
         public ConfgInputConcreteMediator confgInputConcreteMediator = new ConfgInputConcreteMediator();
         public ConfgInputConcreteColleague1 inputKeyConfgInputConcreteColleague1;
         public ConfgInputConcreteColleague2 inputKeyLabelConfgInputConcreteColleague1;
+        public LanguageReceiver languageReceiver = new LanguageReceiver();
+        public LanguageCommand languageCommand { get; set; }
+        public List<MainMenuSubject> mainMenuSubjectList = new List<MainMenuSubject>();
         #endregion
     }
 }

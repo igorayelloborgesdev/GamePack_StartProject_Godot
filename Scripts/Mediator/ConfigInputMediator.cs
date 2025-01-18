@@ -65,9 +65,9 @@ namespace GamePackStartProjectGodot.Scripts.Mediator
         {
         }
 
-        public ConfgInputConcreteColleague2 BuilderMainMenuButtonsConfigLabelList(List<Label> mainMenuButtonsConfigLabelList)
-        { 
-            this.mainMenuButtonsConfigLabelList = mainMenuButtonsConfigLabelList;
+        public ConfgInputConcreteColleague2 BuilderMainMenuButtonsConfigLabelList(List<LangStatic> mainMenuButtonsConfigLabelList)
+        {            
+            this.mainMenuButtonsConfigLabelList = mainMenuButtonsConfigLabelList.ToList<Label>();
             return this;
         }        
         public ConfgInputConcreteColleague2 BuilderMainMenuButtonsConfigButtonLabelList(List<Label> mainMenuButtonsConfigButtonLabelList)

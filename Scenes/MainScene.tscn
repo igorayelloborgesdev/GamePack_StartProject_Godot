@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://rfp7ra5qunh0"]
+[gd_scene load_steps=15 format=3 uid="uid://rfp7ra5qunh0"]
 
 [ext_resource type="Texture2D" uid="uid://dgw4aa51oyeky" path="res://Art/2d/NeutralPixel.png" id="1_4s0sp"]
 [ext_resource type="Script" path="res://Scripts/View/MainView.cs" id="1_5ck1u"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cdav1c4n2lus7" path="res://Art/2d/CreditsIco.png" id="7_666oy"]
 [ext_resource type="Texture2D" uid="uid://80ojf0isu0jl" path="res://Art/2d/QuitIco.png" id="8_2h5h1"]
 [ext_resource type="Texture2D" uid="uid://b7kalwsqurvr0" path="res://Art/2d/ConfirmCheckIco.png" id="10_77uup"]
+[ext_resource type="Script" path="res://Prefab/LangStatic.cs" id="10_oaxox"]
 [ext_resource type="Texture2D" uid="uid://c3hpb33bdg3pf" path="res://Art/2d/SaveIco.png" id="11_gn63w"]
 [ext_resource type="Texture2D" uid="uid://bixdqhjxgwn0" path="res://Art/2d/RestoreIco.png" id="12_2k77e"]
 
@@ -355,6 +356,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MainMenuScreenControl0" type="Control" parent="MainMenuScreenControl"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -380,8 +382,11 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Screen 1"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "mainMenu"
 
 [node name="MainMenuScreenControl1" type="Control" parent="MainMenuScreenControl"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -407,33 +412,17 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Screen 2"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "tutorialMessage"
 
 [node name="MainMenuScreenControl2" type="Control" parent="MainMenuScreenControl"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Label" type="Label" parent="MainMenuScreenControl/MainMenuScreenControl2"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.305
-anchor_top = 0.279
-anchor_right = 0.695
-anchor_bottom = 0.721
-offset_left = 0.299988
-offset_top = 0.207993
-offset_right = -0.300049
-offset_bottom = -0.208008
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_o5acb")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Screen 3"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="LanguageGameButton" type="Button" parent="MainMenuScreenControl/MainMenuScreenControl2"]
 self_modulate = Color(1, 1, 1, 0)
@@ -476,6 +465,8 @@ theme_override_font_sizes/font_size = 40
 text = "Language"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "language"
 
 [node name="InputGameButton" type="Button" parent="MainMenuScreenControl/MainMenuScreenControl2"]
 self_modulate = Color(1, 1, 1, 0)
@@ -518,8 +509,11 @@ theme_override_font_sizes/font_size = 40
 text = "Input"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "input"
 
 [node name="MainMenuScreenControl3" type="Control" parent="MainMenuScreenControl"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -530,23 +524,26 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="MainMenuScreenControl/MainMenuScreenControl3"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.305
+anchor_left = 0.108
 anchor_top = 0.279
-anchor_right = 0.695
+anchor_right = 0.892
 anchor_bottom = 0.721
-offset_left = 0.299988
+offset_left = 0.679993
 offset_top = 0.207993
-offset_right = -0.300049
+offset_right = -0.680054
 offset_bottom = -0.208008
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_o5acb")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Screen 4"
+text = "Screen 3"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "loadMenu"
 
 [node name="MainMenuScreenControl4" type="Control" parent="MainMenuScreenControl"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -572,8 +569,11 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Screen 5"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "credit"
 
 [node name="MainMenuScreenControl5" type="Control" parent="MainMenuScreenControl"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -599,21 +599,24 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Screen 6"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "exitConfirmation"
 
 [node name="QuitGameButton" type="Button" parent="MainMenuScreenControl/MainMenuScreenControl5"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.632
-anchor_top = 0.494
-anchor_right = 0.665
-anchor_bottom = 0.571
+anchor_left = 0.481351
+anchor_top = 0.629802
+anchor_right = 0.514351
+anchor_bottom = 0.706802
 offset_left = 0.719971
 offset_top = -0.112
 offset_right = -0.0999756
 offset_bottom = -0.00802612
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenControl/MainMenuScreenControl5/QuitGameButton"]
 modulate = Color(0.764706, 0.764706, 0.764706, 1)
@@ -737,6 +740,7 @@ texture = ExtResource("8_2h5h1")
 expand_mode = 1
 
 [node name="InputScreenControl" type="Control" parent="MainMenuScreenConfigControl"]
+visible = false
 layout_mode = 1
 anchor_top = 0.22
 anchor_right = 1.0
@@ -763,7 +767,7 @@ texture = ExtResource("1_4s0sp")
 region_rect = Rect2(10, 0, 10, 0)
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputUpTitleNinePatchRect"]
+[node name="LangStatic" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputUpTitleNinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -776,6 +780,8 @@ theme_override_font_sizes/font_size = 26
 text = "UP"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "up"
 
 [node name="InputUpButton" type="Button" parent="MainMenuScreenConfigControl/InputScreenControl"]
 self_modulate = Color(1, 1, 1, 0)
@@ -836,7 +842,7 @@ texture = ExtResource("1_4s0sp")
 region_rect = Rect2(10, 0, 10, 0)
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputDownTitleNinePatchRect"]
+[node name="LangStatic" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputDownTitleNinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -849,6 +855,8 @@ theme_override_font_sizes/font_size = 26
 text = "DOWN"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "down"
 
 [node name="InputDownButton" type="Button" parent="MainMenuScreenConfigControl/InputScreenControl"]
 self_modulate = Color(1, 1, 1, 0)
@@ -909,7 +917,7 @@ texture = ExtResource("1_4s0sp")
 region_rect = Rect2(10, 0, 10, 0)
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputLeftTitleNinePatchRect"]
+[node name="LangStatic" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputLeftTitleNinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -922,6 +930,8 @@ theme_override_font_sizes/font_size = 26
 text = "LEFT"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "left"
 
 [node name="InputLeftButton" type="Button" parent="MainMenuScreenConfigControl/InputScreenControl"]
 self_modulate = Color(1, 1, 1, 0)
@@ -982,7 +992,7 @@ texture = ExtResource("1_4s0sp")
 region_rect = Rect2(10, 0, 10, 0)
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputRightTitleNinePatchRect"]
+[node name="LangStatic" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputRightTitleNinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -995,6 +1005,8 @@ theme_override_font_sizes/font_size = 26
 text = "RIGHT"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "right"
 
 [node name="InputRightButton" type="Button" parent="MainMenuScreenConfigControl/InputScreenControl"]
 self_modulate = Color(1, 1, 1, 0)
@@ -1055,7 +1067,7 @@ texture = ExtResource("1_4s0sp")
 region_rect = Rect2(10, 0, 10, 0)
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputButton1TitleNinePatchRect"]
+[node name="LangStatic" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputButton1TitleNinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1068,6 +1080,8 @@ theme_override_font_sizes/font_size = 26
 text = "Button 1"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "button1"
 
 [node name="InputButton1Button" type="Button" parent="MainMenuScreenConfigControl/InputScreenControl"]
 self_modulate = Color(1, 1, 1, 0)
@@ -1128,7 +1142,7 @@ texture = ExtResource("1_4s0sp")
 region_rect = Rect2(10, 0, 10, 0)
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputButton2TitleNinePatchRect"]
+[node name="LangStatic" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputButton2TitleNinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1141,6 +1155,8 @@ theme_override_font_sizes/font_size = 26
 text = "Button2"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "button2"
 
 [node name="InputButton2Button" type="Button" parent="MainMenuScreenConfigControl/InputScreenControl"]
 self_modulate = Color(1, 1, 1, 0)
@@ -1201,7 +1217,7 @@ texture = ExtResource("1_4s0sp")
 region_rect = Rect2(10, 0, 10, 0)
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputPauseTitleNinePatchRect"]
+[node name="LangStatic" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/InputPauseTitleNinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1214,6 +1230,8 @@ theme_override_font_sizes/font_size = 26
 text = "PAUSE"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "pause"
 
 [node name="InputPauseButton" type="Button" parent="MainMenuScreenConfigControl/InputScreenControl"]
 self_modulate = Color(1, 1, 1, 0)
@@ -1256,51 +1274,23 @@ text = "Input Pause"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LanguageScreenControl" type="Control" parent="MainMenuScreenConfigControl"]
-layout_mode = 1
-anchor_top = 0.22
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 0.399979
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="MainMenuScreenConfigControl/LanguageScreenControl"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.244
-anchor_top = 0.234
-anchor_right = 0.756
-anchor_bottom = 0.766
-offset_left = -0.880035
-offset_top = -0.110016
-offset_right = 0.880005
-offset_bottom = 0.109985
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_o5acb")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Idioma"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SaveButton" type="Button" parent="MainMenuScreenConfigControl"]
+[node name="JoystickButton" type="Button" parent="MainMenuScreenConfigControl/InputScreenControl"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.445167
-anchor_top = 0.66837
-anchor_right = 0.478167
-anchor_bottom = 0.73337
+anchor_left = 0.490769
+anchor_top = 0.47
+anchor_right = 0.668
+anchor_bottom = 0.527
 offset_left = -0.276611
-offset_top = 0.0243149
-offset_right = 0.958374
-offset_bottom = -0.160675
+offset_top = 0.260468
+offset_right = 0.439819
+offset_bottom = -0.217499
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/SaveButton"]
+[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/InputScreenControl/JoystickButton"]
 modulate = Color(0.764706, 0.764706, 0.764706, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -1311,7 +1301,93 @@ grow_vertical = 2
 texture = ExtResource("1_4s0sp")
 region_rect = Rect2(10, 0, 10, 0)
 
-[node name="TextureRect" type="TextureRect" parent="MainMenuScreenConfigControl/SaveButton/TitleNinePatchRect"]
+[node name="Label" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/JoystickButton/TitleNinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o5acb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Joystick"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "joystick"
+
+[node name="KeyboardButton" type="Button" parent="MainMenuScreenConfigControl/InputScreenControl"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.299102
+anchor_top = 0.47
+anchor_right = 0.477
+anchor_bottom = 0.527
+offset_left = -0.276611
+offset_top = 0.260468
+offset_right = -0.840637
+offset_bottom = -0.217499
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/InputScreenControl/KeyboardButton"]
+modulate = Color(0.764706, 0.764706, 0.764706, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4s0sp")
+region_rect = Rect2(10, 0, 10, 0)
+
+[node name="Label" type="Label" parent="MainMenuScreenConfigControl/InputScreenControl/KeyboardButton/TitleNinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o5acb")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Keyboard"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("10_oaxox")
+langKey = "keyboard"
+
+[node name="SaveButton" type="Button" parent="MainMenuScreenConfigControl/InputScreenControl"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.444936
+anchor_top = 0.575
+anchor_right = 0.479
+anchor_bottom = 0.652
+offset_left = -0.276611
+offset_top = -0.150055
+offset_right = -0.680054
+offset_bottom = 0.0159912
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/InputScreenControl/SaveButton"]
+modulate = Color(0.764706, 0.764706, 0.764706, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4s0sp")
+region_rect = Rect2(10, 0, 10, 0)
+
+[node name="TextureRect" type="TextureRect" parent="MainMenuScreenConfigControl/InputScreenControl/SaveButton/TitleNinePatchRect"]
 self_modulate = Color(0.47451, 0.47451, 0.47451, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -1328,23 +1404,23 @@ grow_vertical = 2
 texture = ExtResource("11_gn63w")
 expand_mode = 1
 
-[node name="RestoreButton" type="Button" parent="MainMenuScreenConfigControl"]
+[node name="RestoreButton" type="Button" parent="MainMenuScreenConfigControl/InputScreenControl"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.486833
-anchor_top = 0.66837
-anchor_right = 0.519833
-anchor_bottom = 0.73337
+anchor_top = 0.575
+anchor_right = 0.521
+anchor_bottom = 0.652
 offset_left = -0.276611
-offset_top = 0.0243149
-offset_right = 0.958374
-offset_bottom = -0.160675
+offset_top = -0.286163
+offset_right = -0.877319
+offset_bottom = -0.120117
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/RestoreButton"]
+[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/InputScreenControl/RestoreButton"]
 modulate = Color(0.764706, 0.764706, 0.764706, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -1355,7 +1431,7 @@ grow_vertical = 2
 texture = ExtResource("1_4s0sp")
 region_rect = Rect2(10, 0, 10, 0)
 
-[node name="TextureRect" type="TextureRect" parent="MainMenuScreenConfigControl/RestoreButton/TitleNinePatchRect"]
+[node name="TextureRect" type="TextureRect" parent="MainMenuScreenConfigControl/InputScreenControl/RestoreButton/TitleNinePatchRect"]
 self_modulate = Color(0.47451, 0.47451, 0.47451, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -1372,23 +1448,32 @@ grow_vertical = 2
 texture = ExtResource("12_2k77e")
 expand_mode = 1
 
-[node name="JoystickButton" type="Button" parent="MainMenuScreenConfigControl"]
+[node name="LanguageScreenControl" type="Control" parent="MainMenuScreenConfigControl"]
+layout_mode = 1
+anchor_top = 0.22
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.399979
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lang0Button" type="Button" parent="MainMenuScreenConfigControl/LanguageScreenControl"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.490769
-anchor_top = 0.587015
-anchor_right = 0.66773
-anchor_bottom = 0.643667
+anchor_left = 0.382436
+anchor_top = 0.327482
+anchor_right = 0.559667
+anchor_bottom = 0.384482
 offset_left = -0.276611
-offset_top = 0.0243149
-offset_right = 0.958374
-offset_bottom = -0.160675
+offset_top = 0.260468
+offset_right = 0.439819
+offset_bottom = -0.217499
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/JoystickButton"]
+[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/LanguageScreenControl/Lang0Button"]
 modulate = Color(0.764706, 0.764706, 0.764706, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -1399,7 +1484,7 @@ grow_vertical = 2
 texture = ExtResource("1_4s0sp")
 region_rect = Rect2(10, 0, 10, 0)
 
-[node name="Label" type="Label" parent="MainMenuScreenConfigControl/JoystickButton/TitleNinePatchRect"]
+[node name="Label" type="Label" parent="MainMenuScreenConfigControl/LanguageScreenControl/Lang0Button/TitleNinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1409,27 +1494,27 @@ grow_vertical = 2
 theme = SubResource("Theme_o5acb")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
-text = "Joystick"
+text = "English"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="KeyboardButton" type="Button" parent="MainMenuScreenConfigControl"]
+[node name="Lang1Button" type="Button" parent="MainMenuScreenConfigControl/LanguageScreenControl"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.299102
-anchor_top = 0.587015
-anchor_right = 0.476063
-anchor_bottom = 0.643667
+anchor_left = 0.382435
+anchor_top = 0.412993
+anchor_right = 0.560333
+anchor_bottom = 0.469993
 offset_left = -0.276611
-offset_top = 0.0243149
-offset_right = 0.958374
-offset_bottom = -0.160675
+offset_top = 0.260468
+offset_right = -0.840637
+offset_bottom = -0.217499
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/KeyboardButton"]
+[node name="TitleNinePatchRect" type="NinePatchRect" parent="MainMenuScreenConfigControl/LanguageScreenControl/Lang1Button"]
 modulate = Color(0.764706, 0.764706, 0.764706, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -1440,7 +1525,7 @@ grow_vertical = 2
 texture = ExtResource("1_4s0sp")
 region_rect = Rect2(10, 0, 10, 0)
 
-[node name="Label" type="Label" parent="MainMenuScreenConfigControl/KeyboardButton/TitleNinePatchRect"]
+[node name="Label" type="Label" parent="MainMenuScreenConfigControl/LanguageScreenControl/Lang1Button/TitleNinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1450,11 +1535,12 @@ grow_vertical = 2
 theme = SubResource("Theme_o5acb")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
-text = "Keyboard"
+text = "Português"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MainMenuScreenModalControl" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

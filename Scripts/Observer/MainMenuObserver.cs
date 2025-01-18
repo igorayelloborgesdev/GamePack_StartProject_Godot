@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using GamePackStartProjectGodot.Scripts.Singleton;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,13 @@ namespace GamePackStartProjectGodot.Scripts.Observer
         }        
         public void Notify()
         {
-            observerTitle.Update();
+            if (observerTitle is not null)
+                observerTitle.Update();
+        }
+        public void NotifyByKey()
+        {
+            if (observerTitle is not null)
+                observerTitle.UpdateByKey();
         }
     }
     public class MainMenuSubjectConcreteSubject : MainMenuSubject
@@ -27,10 +34,17 @@ namespace GamePackStartProjectGodot.Scripts.Observer
             get { return subjectState; }
             set { subjectState = value; }
         }
+        private string keyState;
+        public string KeyState
+        {
+            get { return keyState; }
+            set { keyState = value; }
+        }
     }
     public abstract class MainMenuObserver
     {
         public abstract void Update();
+        public abstract void UpdateByKey();
     }
     public class MainMenuConcreteObserver : MainMenuObserver
     {
@@ -44,8 +58,14 @@ namespace GamePackStartProjectGodot.Scripts.Observer
         public override void Update()
         {
             var obj = node as Label;
-            if (obj != null)
+            if (obj is not null && this.mainMenuSubjectConcreteSubject.SubjectState is not null)
                 obj.Text = this.mainMenuSubjectConcreteSubject.SubjectState.ToString();                
-        }                
+        }
+        public override void UpdateByKey()
+        {
+            var obj = node as Label;
+            if (obj is not null && this.mainMenuSubjectConcreteSubject.SubjectState is not null)
+                obj.Text = LanguageSingleton.selectedLanguage[this.mainMenuSubjectConcreteSubject.KeyState.ToString()];
+        }
     }
 }

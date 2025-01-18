@@ -1,7 +1,9 @@
-﻿using GamePackStartProjectGodot.Scripts.Decorator;
+﻿using GamePackStartProjectGodot.Scripts.Command;
+using GamePackStartProjectGodot.Scripts.Decorator;
 using GamePackStartProjectGodot.Scripts.DTO;
 using GamePackStartProjectGodot.Scripts.Factory;
 using GamePackStartProjectGodot.Scripts.Model;
+using GamePackStartProjectGodot.Scripts.Observer;
 using GamePackStartProjectGodot.Scripts.Util;
 using Godot;
 using System;
@@ -10,6 +12,7 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GamePackStartProjectGodot.Scripts.Facade
 {
@@ -25,11 +28,11 @@ namespace GamePackStartProjectGodot.Scripts.Facade
             mainButtonModel.mainMenuControlsList.RemoveAt(0);
             new MainClient().CreateObjects<Button>(control, mainButtonModel.upperMenuControlNodeName, mainButtonModel.mainMenuButtonsList);            
             AssignEventToButton(mainButtonModel.mainMenuButtonsList, new MainMenuButtonConcreteDecorator()
-                .SetObserverBuilder<Control>(mainButtonModel.mainMenuControlsList).SetObserverBuilder<Label>(mainButtonModel.titleLabel));
+                .SetObserverBuilder<Control>(mainButtonModel.mainMenuControlsList).SetObserverBuilder<Label>(mainButtonModel.titleLabel), mainButtonModel);
             new MainClient().CreateObjects<Button>(control, mainButtonModel.mainMenuScreenControl_MainMenuScreenControl5_QuitGameButtonName,
                 out mainButtonModel.quitGameButton);
             AssignEventToButton(mainButtonModel.quitGameButton, new MainMenuQuitButtonConcreteDecorator()
-                .SetObserverBuilder<Control>(control));
+                .SetObserverBuilder<Control>(control), mainButtonModel);
             new MainClient().CreateObjects<Button>(control, mainButtonModel.mainMenuScreenControl_MainMenuScreenControl2_LanguageGameButtonName,
                 out mainButtonModel.languageGameButton);
             new MainClient().CreateObjects<Button>(control, mainButtonModel.mainMenuScreenControl_MainMenuScreenControl2_InputGameButtonName,
@@ -47,22 +50,22 @@ namespace GamePackStartProjectGodot.Scripts.Facade
                 .SetObserverBuilder<Control>(mainButtonModel.mainMenuScreenConfigControl)
                 .SetObserverBuilder<Label>(mainButtonModel.mainMenuScreenConfigControlTitleNinePatchRectTitleLabel)
                 .SetObserverBuilder<Control>(mainButtonModel.mainMenuScreenConfigControlList)
-                , 0);
+                , 0 ,mainButtonModel);
             AssignEventToButton(mainButtonModel.languageGameButton,
                 new ConfigButtonConcreteDecorator()
                 .SetObserverBuilder<Control>(mainButtonModel.mainMenuScreenConfigControl)
                 .SetObserverBuilder<Label>(mainButtonModel.mainMenuScreenConfigControlTitleNinePatchRectTitleLabel)
                 .SetObserverBuilder<Control>(mainButtonModel.mainMenuScreenConfigControlList)
-                , 1);
+                , 1, mainButtonModel);
             new MainClient().CreateObjects<Button>(control, mainButtonModel.mainMenuScreenConfigControl_BackButtonName,
                 out mainButtonModel.mainMenuScreenConfigControl_BackButton);            
             AssignEventToButton(mainButtonModel.mainMenuScreenConfigControl_BackButton,
                 new ConfigButtonConcreteDecorator()
-                .SetObserverBuilder<Control>(mainButtonModel.mainMenuScreenConfigControl));
+                .SetObserverBuilder<Control>(mainButtonModel.mainMenuScreenConfigControl), mainButtonModel);
 
             mainButtonModel.mainMenuScreenConfigControl.Hide();
 
-            new MainClient().CreateObjects<Label>(control,
+            new MainClient().CreateObjects<LangStatic>(control,
                 mainButtonModel.mainMenuScreenConfigControl_InputScreenControl,
                 mainButtonModel.mainMenuScreenConfigControl_InputScreenControl_ArrayLabel,
                 mainButtonModel.mainMenuButtonsConfigLabelList,
@@ -79,7 +82,7 @@ namespace GamePackStartProjectGodot.Scripts.Facade
                 false);
 
             AssignEventToButton(mainButtonModel.mainMenuButtonsConfigButtonList, new ConfigInputButtonConcreteDecorator()
-                .SetObserverBuilder<Label>(mainButtonModel.mainMenuButtonsConfigLabelList, mainButtonModel.mainMenuButtonsConfigButtonLabelList), 
+                .SetObserverBuilder<Label>(mainButtonModel.mainMenuButtonsConfigLabelList.ToList<Label>(), mainButtonModel.mainMenuButtonsConfigButtonLabelList), 
                  mainButtonModel.configDTO, -1, false);            
 
             new MainClient().CreateObjects<Button>(control, mainButtonModel.mainMenuScreenConfigControl_SaveButtonLabel, 
@@ -98,14 +101,14 @@ namespace GamePackStartProjectGodot.Scripts.Facade
 
             AssignEventToButton(mainButtonModel.mainMenuScreenConfigControl_SaveButton,
                 new ConfigButtonSaveConfigConcreteDecorator()
-                .SetMainButtonModelBuilder(mainButtonModel));
+                .SetMainButtonModelBuilder(mainButtonModel), mainButtonModel);
             AssignEventToButton(mainButtonModel.mainMenuScreenConfigControl_RestoreButton,
                 new ConfigButtonRestoreConfigConcreteDecorator()
-                .SetMainButtonModelBuilder(mainButtonModel));
+                .SetMainButtonModelBuilder(mainButtonModel), mainButtonModel);
 
             AssignEventToButton(mainButtonModel.mainMenuScreenModalControlBackButton,
                 new ConfigButtonModalConfigConcreteDecorator()
-                .SetMainButtonModelBuilder(mainButtonModel));
+                .SetMainButtonModelBuilder(mainButtonModel), mainButtonModel);
 
             new MainClient().CreateObjects<Button>(control, mainButtonModel.mainMenuScreenConfigControl_JoystickButtonLabel,
                 out mainButtonModel.mainMenuScreenConfigControl_JoystickButton);
@@ -113,10 +116,10 @@ namespace GamePackStartProjectGodot.Scripts.Facade
             new MainClient().CreateObjects<Button>(control, mainButtonModel.mainMenuScreenConfigControl_KeyboardButtonLabel,
                 out mainButtonModel.mainMenuScreenConfigControl_KeyboardButton);
 
-            new MainClient().CreateObjects<Label>(control, mainButtonModel.mainMenuScreenConfigControl_JoystickButton_TitleNinePatchRect_Label,
+            new MainClient().CreateObjects<LangStatic>(control, mainButtonModel.mainMenuScreenConfigControl_JoystickButton_TitleNinePatchRect_Label,
                 out mainButtonModel.mainMenuScreenConfigControl_JoystickButton_Label);
 
-            new MainClient().CreateObjects<Label>(control, mainButtonModel.mainMenuScreenConfigControl_KeyboardButton_TitleNinePatchRect_Label,
+            new MainClient().CreateObjects<LangStatic>(control, mainButtonModel.mainMenuScreenConfigControl_KeyboardButton_TitleNinePatchRect_Label,
                 out mainButtonModel.mainMenuScreenConfigControl_KeyboardButton_Label);
             
             mainButtonModel.mainMenuButtonsConfigKeyButtonList.Add(mainButtonModel.mainMenuScreenConfigControl_KeyboardButton);
@@ -131,8 +134,33 @@ namespace GamePackStartProjectGodot.Scripts.Facade
 
             new InputConfigClient().CreateObjects(mainButtonModel);
             inputConfigSubSystem = new InputConfigSubSystem().ConfigInputInitBuilder(mainButtonModel);
+            
+            new MainClient().CreateObjects<Button>(control,
+                 mainButtonModel.mainMenuScreenConfigControl_LanguageScreenControl_LangButton_Control,
+                 mainButtonModel.mainMenuScreenConfigControl_LanguageScreenControl_LangButton_Array_Label,
+                 mainButtonModel.mainMenuButtonsLangKeyButtonList,
+                 false);
+
+            new MainClient().CreateObjects<Label>(control,
+                 mainButtonModel.mainMenuScreenConfigControl_LanguageScreenControl_LangButton_Control,
+                 mainButtonModel.mainMenuScreenConfigControl_LanguageScreenControl_LangLabel_Array_Label,
+                 mainButtonModel.mainMenuButtonsLangKeyLabelList,
+                 true);
+
+            new MainClient().CreateObjects<LangStatic>(control, mainButtonModel.mainMenuScreenControl_Label, mainButtonModel.langStaticList);
+            new MainClient().CreateObjects<LangStatic>(control, mainButtonModel.mainMenuScreenControl_ConfigButton_Label, mainButtonModel.langStaticList);
+            new MainClient().CreateObjects<LangStatic>(control, mainButtonModel.mainMenuScreenControl_InputScreenControl_Label, mainButtonModel.langStaticList);
+
+            mainButtonModel.languageCommand = new LanguageConcreteCommand(mainButtonModel.languageReceiver.LangStaticListBuilder(mainButtonModel.langStaticList));
+
+            AssignEventToButton(mainButtonModel.mainMenuButtonsLangKeyButtonList, new ConfigLanguageButtonKeyConcreteDecorator()
+                .SetObserverBuilder<Label>(mainButtonModel.mainMenuButtonsLangKeyLabelList, mainButtonModel.mainMenuButtonsLangKeyLabelList)
+                .SetCommandBuilder(mainButtonModel.languageCommand)
+                .SetMainMenuSubjectBuilder(mainButtonModel.mainMenuSubjectList)
+                , mainButtonModel.configDTO, -1, false);
+
         }
-        private void AssignEventToButton(List<Button> mainMenuButtonsList, MainMenuButtonComponent mainMenuButtonComponent)
+        private void AssignEventToButton(List<Button> mainMenuButtonsList, MainMenuButtonComponent mainMenuButtonComponent, MainButtonModel mainButtonModel)
         {            
             int count = 0;            
             foreach (var mainMenuButton in mainMenuButtonsList)
@@ -142,14 +170,17 @@ namespace GamePackStartProjectGodot.Scripts.Facade
                 count++;
             }            
             mainMenuButtonComponent.Operation<Button>(0);
+            SetMainMenuSubjectList(mainMenuButtonComponent, mainButtonModel);
         }
-        private void AssignEventToButton(Button mainMenuButtons, MainMenuButtonComponent mainMenuButtonComponent)
+        private void AssignEventToButton(Button mainMenuButtons, MainMenuButtonComponent mainMenuButtonComponent, MainButtonModel mainButtonModel)
         {
-            mainMenuButtons.Pressed += () => { mainMenuButtonComponent.Operation<Button>(); };            
+            mainMenuButtons.Pressed += () => { mainMenuButtonComponent.Operation<Button>(); };
+            SetMainMenuSubjectList(mainMenuButtonComponent, mainButtonModel);
         }
-        private void AssignEventToButton(Button mainMenuButtons, MainMenuButtonComponent mainMenuButtonComponent, int id)
+        private void AssignEventToButton(Button mainMenuButtons, MainMenuButtonComponent mainMenuButtonComponent, int id, MainButtonModel mainButtonModel)
         {
             mainMenuButtons.Pressed += () => { mainMenuButtonComponent.Operation<Button>(id); };
+            SetMainMenuSubjectList(mainMenuButtonComponent, mainButtonModel);
         }
         private void AssignEventToButton(List<Button> mainMenuButtonsList, ConfigButtonComponent configButtonComponent, ConfigDTO configDTO, int initId, bool isInput)
         {
@@ -159,8 +190,7 @@ namespace GamePackStartProjectGodot.Scripts.Facade
                 int countNew = count;
                 mainMenuButton.Pressed += () => { configButtonComponent.Operation<Button>(countNew, configDTO); };
                 count++;
-            }
-            
+            }            
             if(isInput)
                 configButtonComponent.Operation<Button>(ConfigSingleton.saveConfigDTO is null ? 0 : ConfigSingleton.saveConfigDTO.keyboardJoystick, configDTO);
             else
@@ -170,6 +200,11 @@ namespace GamePackStartProjectGodot.Scripts.Facade
         public void Update(double delta, MainButtonModel mainButtonModel)
         {                        
             inputConfigSubSystem.ConfigInput(mainButtonModel);
+        }
+        private void SetMainMenuSubjectList(MainMenuButtonComponent mainMenuButtonComponent, MainButtonModel mainButtonModel)
+        {
+            if (mainMenuButtonComponent.GetMainMenuSubject() is not null)            
+                mainButtonModel.mainMenuSubjectList.Add(mainMenuButtonComponent.GetMainMenuSubject());            
         }
     }
     public class InputConfigSubSystem

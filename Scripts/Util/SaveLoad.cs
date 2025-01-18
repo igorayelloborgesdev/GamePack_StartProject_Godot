@@ -1,13 +1,17 @@
 using Godot;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Xml.Linq;
 
 public class SaveLoad {
     #region const
     private static string path = ProjectSettings.GlobalizePath("user://");
     private static string configFileName = "config.json";
     private static string pathData = ProjectSettings.GlobalizePath("res://");
+    private static string pathDataName = "Data\\";
+    private static string[] langArray = { "LangENG.xml", "LangPOR.xml" };
     #endregion
     #region Methods
     public static bool SaveConfig<T>(T configObj)
@@ -80,6 +84,30 @@ public class SaveLoad {
             return default(T);
         }
 
+    }
+
+    public static List<Dictionary<string, string>> LoadXML(string val, string aId)
+    {
+        var loadPath = Path.Join(pathData, pathDataName);
+        List<Dictionary<string, string>> langList = new List<Dictionary<string, string>>();
+        foreach (var lang in langArray)
+        { 
+            var pathFinal = Path.Join(loadPath, lang);
+            XDocument doc = XDocument.Load(pathFinal);
+            var textElements = doc.Descendants(val);
+            Dictionary<string, string> langDict = new Dictionary<string, string>();            
+            foreach (var element in textElements)
+            {
+                string id = element.Attribute(aId)?.Value;
+                string value = element.Value;
+                if (!string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(value))
+                {
+                    langDict[id] = value;
+                }
+            }
+            langList.Add(langDict);
+        }
+        return langList;
     }
     #endregion
 }
