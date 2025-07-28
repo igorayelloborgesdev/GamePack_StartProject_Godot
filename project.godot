@@ -12,13 +12,14 @@ config_version=5
 
 config/name="Game Pack Start Project Godot"
 run/main_scene="res://Scenes/SplashScene.tscn"
-config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 

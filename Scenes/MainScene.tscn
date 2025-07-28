@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://rfp7ra5qunh0"]
 
 [ext_resource type="Texture2D" uid="uid://dgw4aa51oyeky" path="res://Art/2d/NeutralPixel.png" id="1_4s0sp"]
-[ext_resource type="Script" path="res://Scripts/View/MainView.cs" id="1_5ck1u"]
+[ext_resource type="Script" uid="uid://cpya3mfe6jp1y" path="res://Scripts/View/MainView.cs" id="1_5ck1u"]
 [ext_resource type="FontFile" uid="uid://sc21dkflbfwu" path="res://Art/Fonts/Akt-Regular.ttf" id="2_igc77"]
 [ext_resource type="Texture2D" uid="uid://b7avtc7bdoind" path="res://Art/2d/MenuIco.png" id="3_mr6p2"]
 [ext_resource type="Texture2D" uid="uid://cnetft44wffyv" path="res://Art/2d/TutorialIco.png" id="4_ivhl6"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cdav1c4n2lus7" path="res://Art/2d/CreditsIco.png" id="7_666oy"]
 [ext_resource type="Texture2D" uid="uid://80ojf0isu0jl" path="res://Art/2d/QuitIco.png" id="8_2h5h1"]
 [ext_resource type="Texture2D" uid="uid://b7kalwsqurvr0" path="res://Art/2d/ConfirmCheckIco.png" id="10_77uup"]
-[ext_resource type="Script" path="res://Prefab/LangStatic.cs" id="10_oaxox"]
+[ext_resource type="Script" uid="uid://cpx8pptho8eer" path="res://Prefab/LangStatic.cs" id="10_oaxox"]
 [ext_resource type="Texture2D" uid="uid://c3hpb33bdg3pf" path="res://Art/2d/SaveIco.png" id="11_gn63w"]
 [ext_resource type="Texture2D" uid="uid://bixdqhjxgwn0" path="res://Art/2d/RestoreIco.png" id="12_2k77e"]
 

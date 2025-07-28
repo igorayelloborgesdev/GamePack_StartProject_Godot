@@ -198,8 +198,9 @@ namespace GamePackStartProjectGodot.Scripts.Facade
 
         }
         public void Update(double delta, MainButtonModel mainButtonModel)
-        {                        
-            inputConfigSubSystem.ConfigInput(mainButtonModel);
+        {
+            if(inputConfigSubSystem is not null)
+                inputConfigSubSystem.ConfigInput(mainButtonModel);
         }
         private void SetMainMenuSubjectList(MainMenuButtonComponent mainMenuButtonComponent, MainButtonModel mainButtonModel)
         {

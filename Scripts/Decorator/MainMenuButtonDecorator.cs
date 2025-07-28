@@ -39,7 +39,7 @@ public class MainMenuButtonConcreteDecorator : MainMenuButtonComponent
                 obj.Hide();            
         }
         var objShow = observerList[id] as Control;
-        objShow.Show();
+        objShow.Show(); 
         mainMenuSubjectConcreteSubject.SubjectState = LanguageSingleton.selectedLanguage[menuLanguage[id]];
         mainMenuSubjectConcreteSubject.KeyState = menuLanguage[id];
         mainMenuSubjectConcreteSubject.Notify();        
