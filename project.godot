@@ -26,3 +26,7 @@ window/stretch/aspect="expand"
 [dotnet]
 
 project/assembly_name="Game Pack Start Project Godot"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
